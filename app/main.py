@@ -2,9 +2,10 @@ def create_report(data_file_name: str,
                   report_file_name: str) -> None:
     supply = 0
     buy = 0
+
     with open(data_file_name, "r") as f:
-        for row in f:
-            operation, amount = row.strip().split(",")
+        for line in f:
+            operation, amount = line.strip().split(",")
             amount = int(amount)
 
             if operation == "supply":
@@ -14,7 +15,5 @@ def create_report(data_file_name: str,
 
     result = supply - buy
 
-    with open(report_file_name, "w") as file:
-        file.write(f"supply,{supply}\n")
-        file.write(f"buy,{buy}\n")
-        file.write(f"result,{result}")
+    with open(report_file_name, "w") as f:
+        f.write(f"supply,{supply}\nbuy,{buy}\nresult,{result}\n")
